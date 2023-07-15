@@ -45,19 +45,19 @@ namespace MyDietBackend.Services
 
         public async Task<bool> DeleteMeal(int id)
         {
-            var mealPlanItem = await _context.MealPlanItems.FindAsync(id);
+            var mealPlanItem = await _context.Meals.FindAsync(id);
 
             if (mealPlanItem == null)
                 return false;
 
-            _context.MealPlanItems.Remove(mealPlanItem);
+            _context.Meals.Remove(mealPlanItem);
             await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<Meal> SwitchMeal(int mealPlanItemId, bool isEaten)
         {
-            var mealPlanItem = await _context.MealPlanItems.FindAsync(mealPlanItemId);
+            var mealPlanItem = await _context.Meals.FindAsync(mealPlanItemId);
             
             if (mealPlanItem == null)
                 return null;

@@ -15,6 +15,6 @@ namespace MyDietBackend.Database
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeProduct> RecipeProducts { get; set; }
         public DbSet<MealPlan> MealPlans { get; set; }
-        public DbSet<Meal> MealPlanItems { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }
