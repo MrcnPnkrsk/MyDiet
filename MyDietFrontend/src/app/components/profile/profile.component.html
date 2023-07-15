@@ -1,0 +1,53 @@
+<div class="container">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <p>Age</p>
+      <input id="currentAge" type="number" pInputText formControlName="currentAge">
+    </div>
+    
+    <div class="p-field">
+      <p>Sex</p>
+      <p-radioButton name="sex" value="male" formControlName="sex" label="Male"></p-radioButton>
+      <p-radioButton name="sex" value="female" formControlName="sex" label="Female"></p-radioButton>
+    </div>
+    
+    <div class="p-field">
+      <p>Weight</p>
+      <input pInputText id="weight" type="number" formControlName="weight" />
+    </div>
+    
+    <div class="p-field">
+      <p>Height</p>
+      <input pInputText id="height" type="number" formControlName="height" />
+    </div>
+    
+    <div class="p-field">
+      <p>Activity Factor: {{ profileForm.get('activityFactor')?.value }}</p>
+      <p-slider formControlName="activityFactor" [min]="1" [max]="2" [step]="0.1"></p-slider>
+    </div>
+    
+    <div class="p-field">
+      <p>Target Weight</p>
+      <input pInputText id="targetWeight" type="number" formControlName="targetWeight" />
+    </div>
+    
+    <div class="p-field">
+      <p>Change per Month</p>
+      <input pInputText id="changePerMonth" type="number" formControlName="changePerMonth" />
+    </div>
+
+    <div class="p-field">
+      <p>Meals per Day</p>
+      <input pInputText id="mealsPerDay" type="number" formControlName="mealsPerDay" />
+    </div>
+
+    <div class="p-field">
+      <p>Daily Calories</p>
+      <input pInputText id="dailyCalories" type="number" formControlName="dailyCalories" readonly />
+    </div>   
+
+    <div class="p-field">
+      <p-button type="submit" label="Save" class="ui-button-success"></p-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        <span class="p-toolbar-title">MyDiet</span>
+        <p-button *ngIf="getRole() === 'Administrator'" [routerLink]="['/product']" label="Products"></p-button>
+        <p-button *ngIf="getRole() === 'Administrator'" [routerLink]="['/recipe']" label="Recipes"></p-button>
+        <p-button *ngIf="isLoggedIn()" [routerLink]="['/generator']" label="Generator"></p-button>
+        <p-button *ngIf="isLoggedIn()" [routerLink]="['/grocery']" label="Groceries"></p-button>
+    </div>
+    <div class="p-toolbar-group-end">
+        <div *ngIf="!isLoggedIn(); else userLogged">
+            <input id="username" placeholder="Username" type="text" pInputText [(ngModel)]="username">
+            <input id="password" placeholder="Password" type="password" pInputText [(ngModel)]="password">
+            <p-button (click)="login()" label="Log in"></p-button>
+            <p-button (click)="signup()" label="Sign up"></p-button>
+        </div>
+        <ng-template #userLogged>
+            <p-button type="button" label="{{getUsername()}} ({{getRole()}})" icon="pi pi-user" class="ui-button-secondary" [routerLink]="['/profile']"></p-button>
+            <p-button type="button" label="Log out" icon="pi pi-power-off" class="ui-button-secondary" (click)="logout()"></p-button>
+        </ng-template>
+    </div>
+</p-toolbar>
+<p-toast position="bottom-center"></p-toast>

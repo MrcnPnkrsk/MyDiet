@@ -1,0 +1,62 @@
+<div class="grid product-container">
+  <div class="col-4 product-list">
+    <div>
+      <h2>Products</h2>
+      <div class="search-container">
+        <div class="product-list" *ngIf="((products$ | async) ?? []).length > 0">
+          <p-listbox [options]="(products$ | async) || []" [(ngModel)]="selectedProduct" [filter]="true"
+          (onChange)="onSelectProduct($event.value)" optionLabel="name" [listStyle]="{ 'max-height': '600px' }"></p-listbox>        
+        </div>
+      </div>
+      <button pButton type="button" label="New Product" (click)="onCreateNewProduct()"></button>
+    </div>
+  </div>
+
+  <div class="col-8 product-details">
+    <div>
+      <h2>Product Details</h2>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <div class="p-field">
+          <p>Name</p>
+          <input id="name" type="text" pInputText formControlName="name">
+        </div>
+
+        <div class="p-field">
+          <p>Category</p>
+          <input id="category" type="text" pInputText formControlName="category">
+        </div>
+
+        <div class="p-field">
+          <p>Energy</p>
+          <input id="energy" type="number" pInputText formControlName="energy">
+        </div>
+
+        <div class="p-field">
+          <p>Fat</p>
+          <input id="fat" type="number" pInputText formControlName="fat">
+        </div>
+
+        <div class="p-field">
+          <p>Carbs</p>
+          <input id="carbs" type="number" pInputText formControlName="carbs">
+        </div>
+
+        <div class="p-field">
+          <p>Protein</p>
+          <input id="protein" type="number" pInputText formControlName="protein">
+        </div>
+
+        <div class="p-field">
+          <p>URL</p>
+          <input id="url" type="text" pInputText formControlName="url">
+        </div>
+
+        <button pButton type="submit" label="Save" class="p-button-success"></button>
+        <button pButton type="button" label="Delete" class="p-button-danger" (click)="onDeleteProduct()"></button>
+      </form>
+    </div>
+  </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast position="bottom-center"></p-toast>

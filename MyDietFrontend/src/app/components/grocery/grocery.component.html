@@ -1,0 +1,46 @@
+<div class="container">
+    <form [formGroup]="generateMealPlanForm" (ngSubmit)="onSubmit()" class="flex align-items-center">
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <p-calendar id="startDate" formControlName="startDate" selectionMode="single" [showIcon]="true"
+                [ngClass]="{ 'p-invalid': submitted && generateMealPlanForm.controls['startDate'].errors }"></p-calendar>
+            <div *ngIf="submitted && generateMealPlanForm.controls['startDate'].errors" class="p-error">
+                <div *ngIf="generateMealPlanForm.controls['startDate'].errors['required']">Start Date is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <p-calendar id="endDate" formControlName="endDate" selectionMode="single" [showIcon]="true"
+                [ngClass]="{ 'p-invalid': submitted && generateMealPlanForm.controls['endDate'].errors }"></p-calendar>
+            <div *ngIf="submitted && generateMealPlanForm.controls['endDate'].errors" class="p-error">
+                <div *ngIf="generateMealPlanForm.controls['endDate'].errors['required']">End Date is required</div>
+            </div>
+        </div>
+
+        <p-button type="submit" label="Generate" class="p-button-rounded"></p-button>
+        <p-button type="button" label="Print" class="p-button-rounded" (click)="onPrintGroceryList()"></p-button>
+    </form>
+
+    <!-- Grocery list display -->
+    <p-table [value]="aggregatedProducts">
+        <!-- Table columns for product details -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Buy Link</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-productAggregate>
+            <tr>
+                <td>{{ productAggregate.name }}</td>
+                <td>{{ productAggregate.amount }}</td>
+                <td>
+                    <a [href]="productAggregate.url" target="_blank">Buy</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>
